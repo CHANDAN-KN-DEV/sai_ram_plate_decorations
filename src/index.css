@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Playfair Display", serif;
+  --font-sans: "Montserrat", sans-serif;
+  
+  --color-maroon-light: #8E2B45;
+  --color-maroon-default: #6B1D32;
+  --color-maroon-dark: #4A1020;
+  
+  --color-gold-light: #E5C453;
+  --color-gold-default: #D4AF37;
+  --color-gold-dark: #A68520;
+  
+  --color-ivory: #FFFDF7;
+  --color-cream: #F8F3E9;
+  
+  --color-dark-bg: #15080B;
+  --color-dark-card: #240E13;
+  
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-slow: float 9s ease-in-out infinite;
+  --animate-float-fast: float 4s ease-in-out infinite;
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-15px) rotate(3deg);
+    }
+  }
+}
+
+/* Custom Base Styles */
+@layer base {
+  body {
+    @apply font-sans bg-ivory text-maroon-dark transition-colors duration-500 overflow-x-hidden;
+  }
+  
+  body.dark {
+    @apply bg-dark-bg text-cream;
+  }
+}
+
+/* Luxury Utilities */
+@layer utilities {
+  .glass-light {
+    background: rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    box-shadow: 0 8px 32px 0 rgba(107, 29, 50, 0.04);
+  }
+
+  .glass-dark {
+    background: rgba(26, 10, 14, 0.65);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(212, 175, 55, 0.12);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  }
+
+  .glass-gold {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(107, 29, 50, 0.06);
+  }
+
+  .glass-gold-dark {
+    background: rgba(26, 10, 14, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(212, 175, 55, 0.35);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.35);
+  }
+
+  .text-glow-gold {
+    text-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+  }
+  
+  .text-glow-maroon {
+    text-shadow: 0 0 8px rgba(107, 29, 50, 0.15);
+  }
+
+  .gold-gradient-bg {
+    background: linear-gradient(135deg, #D4AF37 0%, #F3E5AB 50%, #AA7C11 100%);
+  }
+
+  .maroon-gradient-bg {
+    background: linear-gradient(135deg, #6B1D32 0%, #8E2B45 50%, #4A1020 100%);
+  }
+  
+  /* Reflective shine effect on hover */
+  .reflection-shine {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .reflection-shine::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 30%;
+    height: 200%;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.25) 30%,
+      rgba(255, 255, 255, 0.7) 50%,
+      rgba(255, 255, 255, 0.25) 70%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(30deg);
+    transition: all 0.65s cubic-bezier(0.25, 1, 0.5, 1);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .reflection-shine:hover::after {
+    left: 130%;
+    opacity: 1;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FFFDF7;
+}
+.dark ::-webkit-scrollbar-track {
+  background: #15080B;
+}
+::-webkit-scrollbar-thumb {
+  background: #D4AF37;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #6B1D32;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #E5C453;
+}
